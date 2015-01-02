@@ -1,0 +1,7 @@
+TH {
+	text-align:left;
+}
+
+#nav_links, #logga, #nav, #nav2, #nav3,  .noprint {
+	display: none;
+}

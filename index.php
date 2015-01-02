@@ -1,17 +1,39 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <title>Mosquitto Websockets</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php
+$path = "./";
+
+require_once($path."class.page.php");
+$page = new page($path, "WeekTimer", true);
+
+require_once($path."class.html.php");
+$html = new html();
+
+$name = filter_input( INPUT_GET, WEEKTIMER, FILTER_SANITIZE_STRING );
+$topicFrom = $page->weekTimers[$name];
+if(empty($topicFrom)){
+    die($html->p("Error: bad input WEEKTIMER..."));
+}
+$topicTo = $topicFrom."_ctrl";
+
+?>
     <script src="mqttws31.js" type="text/javascript"></script>
     <script src="jquery.min.js" type="text/javascript"></script>
     <script src="config.js" type="text/javascript"></script>
 
     <script type="text/javascript">
 
-    var myTopicTo   = '/FunTechHouse/WeekTimer/Motor1_ctrl';
-    var myTopicFrom = '/FunTechHouse/WeekTimer/Motor1';
+<?php
+/*
+echo "<pre>";
+echo $name."\n";
+echo $topicFrom."\n";
+echo $topicTo."\n";
+var_dump($page->weekTimers);
+var_dump($page->weekTimers[$name]);
+echo "</pre>";
+*/
+echo "var myTopicTo   = '".$topicTo."';\n";
+echo "var myTopicFrom = '".$topicFrom."';\n";
+?>
 
     var mqtt;
     var reconnectTimeout = 2000;
@@ -111,10 +133,12 @@
 
 
     </script>
-  </head>
-  <body>
-    <h1>Mosquitto Websockets</h1>
-    <div>
+<?php
+$page->printHead();
+
+print $html->h1("WeekTimer, ".$name);
+?>
+
         <div>Subscribed to <input type='text' id='topic' disabled />
         Status: <input type='text' id='status' size="80" disabled /></div>
 
@@ -131,6 +155,6 @@
         </p>
 
         <ul id='ws' style="font-family: 'Courier New', Courier, monospace;"></ul>
-    </div>
-  </body>
-</html>
+
+
+
