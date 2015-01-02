@@ -11,7 +11,7 @@ class page{
     var $weekTimers = array(
         "Motor1" => "/FunTechHouse/WeekTimer/Motor1",
         "Motor2" => "/FunTechHouse/WeekTimer/Motor2",
-        "Utebel" => "/FunTechHouse/WeekTimer/Utebel",
+        "Utebelysning" => "/FunTechHouse/WeekTimer/Utebel",
 
         "Rum1"   => "/FunTechHouse/WeekTimer/Rum1",
         "Rum2"   => "/FunTechHouse/WeekTimer/Rum2",
