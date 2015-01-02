@@ -10,7 +10,7 @@ $html = new html();
 $name = filter_input( INPUT_GET, WEEKTIMER, FILTER_SANITIZE_STRING );
 $topicFrom = $page->weekTimers[$name];
 if(empty($topicFrom)){
-    die($html->p("Error: bad input WEEKTIMER..."));
+    die("<!-- Error: bad input WEEKTIMER...-->");
 }
 $topicTo = $topicFrom."_ctrl";
 
