@@ -4,8 +4,8 @@ $path = "./";
 require_once($path."class.page.php");
 $page = new page($path, "WeekTimer", true);
 
-require_once($path."class.html.php");
-$html = new html();
+//require_once($path."class.html.php");
+//$html = new html();
 
 $name = filter_input( INPUT_GET, WEEKTIMER, FILTER_SANITIZE_STRING );
 $topicFrom = $page->weekTimers[$name];
@@ -106,7 +106,7 @@ echo "var myTopicFrom = '".$topicFrom."';\n";
     $(document).ready(function(){
         $("#btForceOFF").click(function(){
             console.log("My print: Button OFF pressed...");
-            mqtt.send(myTopicTo, "force OFF 0");
+            mqtt.send(myTopicTo, "force OFF " + $("#forceOFFTime").val() );
             });
         });
 
@@ -136,25 +136,60 @@ echo "var myTopicFrom = '".$topicFrom."';\n";
 <?php
 $page->printHead();
 
-print $html->h1("WeekTimer, ".$name);
+print $page->h1("WeekTimer, ".$name);
 ?>
 
-        <div>Subscribed to <input type='text' id='topic' disabled />
-        Status: <input type='text' id='status' size="80" disabled /></div>
+<div>Subscribed to <input type='text' id='topic' disabled />
+Status: <input type='text' id='status' size="80" disabled /></div>
 
-        <p>
-        <button id="btForceOn">Force ON</button> 
-        <input type="text" id="forceONTime" value="60">
-        <button id="btForceOFF">Force OFF</button> 
-        <button id="btAuto">Auto</button> 
-        </p>
-        <p>
-        <button id="btStatus">Sync</button> 
-        <input type="text" id="timerData" value="">
-        <button id="btUpdate">Update</button> 
-        </p>
+<?php 
+print $page->h2("Force");
+?>
+<p>
+<button id="btForceOn">Force ON</button> 
+<input type="text" id="forceONTime" value="60" size="3">
+<button id="btForceOFF">Force OFF</button> 
+<input type="text" id="forceOFFTime" value="60" size="3">
+<button id="btAuto">Auto</button> 
+</p>
 
-        <ul id='ws' style="font-family: 'Courier New', Courier, monospace;"></ul>
+<p>
+Time is in minutes, and 0 time is forever. 
+</p> 
+<p> 
+If set to forced on for 60 minutes, it will be forces on for 1 hour and then reverted back to auto after that time.
+</p> 
+
+<?php 
+print $page->h2("TimerData");
+?>
+<p>
+<button id="btStatus">Sync</button> 
+<input type="text" id="timerData" value="" size="120">
+<button id="btUpdate">Update</button> 
+</p>
+
+<p>
+The timerdata is built with [start]-[stop] and then a ; to mart the next [start]-[stop] time.
+</p>
+<p>
+Syntax: D:HH:MM-D:HH:MM;D:HH:MM-D:HH:MM;...
+</p>
+<p>
+Where D is day of week, where 1 is monday and 7 is sunday.
+</p>
+<p>
+Wildcards is 0 means all days, 8 weekdays (monday to friday), 9 weekends (saturday and sunday).
+</p>
+<p>
+Where HH is hours in 24h mode, 00 to 23.
+</p>
+<p>
+Where MM is minutes, 00 to 59.
+</p>
+
+
+<ul id='ws' style="font-family: 'Courier New', Courier, monospace;"></ul>
 
 
 
