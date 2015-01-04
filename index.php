@@ -69,8 +69,9 @@ echo "var myTopicFrom = '".$topicFrom."';\n";
     function onConnect() {
         $('#status').val('Connected to ' + host + ':' + port);
         // Connection succeeded; subscribe to our topic
-        mqtt.subscribe(topic, {qos: 0});
-        $('#topic').val(topic);
+        mqtt.subscribe(myTopicTo,   {qos: 0});
+        mqtt.subscribe(myTopicFrom, {qos: 0});
+        $('#topic').val(myTopicFrom);
     }
 
     function onConnectionLost(response) {
@@ -139,8 +140,10 @@ $page->printHead();
 print $page->h1("WeekTimer, ".$name);
 ?>
 
-<div>Subscribed to <input type='text' id='topic' disabled />
-Status: <input type='text' id='status' size="80" disabled /></div>
+<div>
+Subscribed to <input type='text' id='topic'  size="60" disabled /><br>
+Status: <input type='text' id='status' size="80" disabled />
+</div>
 
 <?php 
 print $page->h2("Force");

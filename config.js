@@ -1,6 +1,6 @@
-host = 'jsipi';	// hostname or IP address
+host = 'mosqhub';	// hostname or IP address
 port = 9001;
-topic = '#';		// topic to subscribe to
+//topic = '#';		// topic to subscribe to
 useTLS = false;
 username = null;
 password = null;
