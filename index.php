@@ -4,8 +4,8 @@ $path = "./";
 require_once($path."class.page.php");
 $page = new page($path, "WeekTimer", true);
 
-//require_once($path."class.html.php");
-//$html = new html();
+require_once($path."class.html.php");
+$html = new html();
 
 $name = filter_input( INPUT_GET, WEEKTIMER, FILTER_SANITIZE_STRING );
 $topicFrom = $page->weekTimers[$name];
@@ -129,12 +129,27 @@ echo "var myTopicFrom = '".$topicFrom."';\n";
         });
 
     $(document).ready(function(){
-        $("#btUpdate").click(function(){
+        $("#btSave").click(function(){
             console.log("My print: Button Update pressed...");
             mqtt.send(myTopicTo, $("#timerData").val() );
             });
         });
 
+    $(document).ready(function(){
+        $("#btApply").click(function(){
+            console.log("My print: Button Apply pressed...");
+
+            var timer = $("#timerData").val() + ";" +
+                $("#dowBegin").val() + ":" +
+                $("#hhBegin").val() + ":" +
+                $("#mmBegin").val() + "-" +
+                $("#dowEnd").val() + ":" +
+                $("#hhEnd").val() + ":" +
+                $("#mmEnd").val();
+
+            $("#timerData").val(timer);
+            });
+        });
 
     </script>
 <?php
@@ -171,8 +186,57 @@ print $page->h2("TimerData");
 ?>
 <p>
 <button id="btStatus">Sync</button>
-<input type="text" id="timerData" value="" size="120">
-<button id="btUpdate">Update</button>
+<input type="text" id="timerData" value="" size="100">
+<button id="btSave">Save</button>
+</p>
+
+
+<p>
+<?php
+print $html->select("dowBegin", "1",
+    $html->option("0", "", "All days").
+    $html->option("8", "", "Weekdays").
+    $html->option("9", "", "Weekends").
+    $html->option("1", "", "Mon").
+    $html->option("2", "", "Tue").
+    $html->option("3", "", "Wed").
+    $html->option("4", "", "Thu").
+    $html->option("5", "", "Fri").
+    $html->option("6", "", "Sat").
+    $html->option("7", "", "Sun")
+);
+print "&nbsp:&nbsp";
+
+$hh="";
+for($i=0;$i<=23;$i++){
+    $hh.=$html->option(sprintf("%02d",$i), "", sprintf("%02d",$i));
+}
+print $html->select("hhBegin", "1", $hh);
+print "&nbsp:&nbsp";
+
+print $html->inputText("mmBegin", "00", "2", "2");
+print "&nbsp-&nbsp";
+
+print $html->select("dowEnd", "1",
+    $html->option("0", "", "All days").
+    $html->option("8", "", "Weekdays").
+    $html->option("9", "", "Weekends").
+    $html->option("1", "", "Mon").
+    $html->option("2", "", "Tue").
+    $html->option("3", "", "Wed").
+    $html->option("4", "", "Thu").
+    $html->option("5", "", "Fri").
+    $html->option("6", "", "Sat").
+    $html->option("7", "", "Sun")
+);
+print "&nbsp:&nbsp";
+
+print $html->select("hhEnd", "1", $hh);
+print "&nbsp:&nbsp";
+
+print $html->inputText("mmEnd", "00", "2", "2");
+?>
+<button id="btApply">Apply</button>
 </p>
 
 <p>

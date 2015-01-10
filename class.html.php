@@ -133,7 +133,9 @@ class html{
     }
 
     function inputText($name, $value, $size, $max){
-        return "<INPUT Name=\"".$name."\" ".
+        return "<INPUT ".
+            "ID=\"".$name."\" ".
+            "NAME=\"".$name."\" ".
             "VALUE=\"".$value."\" ".
             "TYPE=\"TEXT\" ".
             "SIZE=\"".$size."\" ".
@@ -167,14 +169,14 @@ class html{
     }
 
     function select($name, $size, $text){
-        return "<select name=\"".$name."\" size=\"".$size."\">\n".$text."</select>\n";
+        return "<select id=\"".$name."\" name=\"".$name."\" size=\"".$size."\">\n".$text."</select>\n";
     }
 
     function option($value, $default_value, $text){
         if($value == $default_value){
-            return "<option value=\"".$value."\" selected>".$text."</option>\n";
+            return "  <option value=\"".$value."\" selected>".$text."</option>\n";
         } 
-        return "<option value=\"".$value."\">".$text."</option>\n";
+        return "  <option value=\"".$value."\">".$text."</option>\n";
     }
 
 
