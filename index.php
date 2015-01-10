@@ -72,6 +72,9 @@ echo "var myTopicFrom = '".$topicFrom."';\n";
         mqtt.subscribe(myTopicTo,   {qos: 0});
         mqtt.subscribe(myTopicFrom, {qos: 0});
         $('#topic').val(myTopicFrom);
+
+        // always start with a new sync
+        mqtt.send(myTopicTo, "status");
     }
 
     function onConnectionLost(response) {
@@ -145,31 +148,31 @@ Subscribed to <input type='text' id='topic'  size="60" disabled /><br>
 Status: <input type='text' id='status' size="80" disabled />
 </div>
 
-<?php 
+<?php
 print $page->h2("Force");
 ?>
 <p>
-<button id="btForceOn">Force ON</button> 
+<button id="btForceOn">Force ON</button>
 <input type="text" id="forceONTime" value="60" size="3">
-<button id="btForceOFF">Force OFF</button> 
+<button id="btForceOFF">Force OFF</button>
 <input type="text" id="forceOFFTime" value="60" size="3">
-<button id="btAuto">Auto</button> 
+<button id="btAuto">Auto</button>
 </p>
 
 <p>
-Time is in minutes, and 0 time is forever. 
-</p> 
-<p> 
+Time is in minutes, and 0 time is forever.
+</p>
+<p>
 If set to forced on for 60 minutes, it will be forces on for 1 hour and then reverted back to auto after that time.
-</p> 
+</p>
 
-<?php 
+<?php
 print $page->h2("TimerData");
 ?>
 <p>
-<button id="btStatus">Sync</button> 
+<button id="btStatus">Sync</button>
 <input type="text" id="timerData" value="" size="120">
-<button id="btUpdate">Update</button> 
+<button id="btUpdate">Update</button>
 </p>
 
 <p>
