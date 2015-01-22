@@ -91,8 +91,13 @@ echo "var myTopicFrom = '".$topicFrom."';\n";
         $('#ws').prepend('<li>' + topic + ' = ' + payload + '</li>');
 
         if(topic === myTopicFrom){
-            //and check for valid data before update
-            $("#timerData").val(payload);
+            if(/^force/.test(payload)){
+                console.log("My print: regexp "+payload);
+                $('#timerStatus').val(payload);
+            } else {
+                //and check for valid data before update
+                $("#timerData").val(payload);
+            }
         }
     };
 
@@ -160,7 +165,8 @@ print $page->h1("WeekTimer, ".$name);
 
 <div>
 Subscribed to <input type='text' id='topic'  size="60" disabled /><br>
-Status: <input type='text' id='status' size="80" disabled />
+Status: <input type='text' id='status' size="80" disabled /><br>
+TimerStatus: <input type='text' id='timerStatus' size="80" disabled />
 </div>
 
 <?php
