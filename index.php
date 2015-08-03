@@ -95,10 +95,17 @@ echo "var myTopicFrom = '".$topicFrom."';\n";
                 console.log("My print: regexp "+payload);
                 $('#timerStatus').val(payload);
             } else {
-                //and check for valid data before update
+                //TODO: check for valid data before update
                 $("#timerData").val(payload);
+                updateDiagrams(payload);
             }
         }
+    };
+
+    function updateDiagrams(timerData){
+        console.log("timerData: "+timerData);
+        //parse data
+        //call diagrams
     };
 
     $(document).ready(function() {
@@ -153,9 +160,10 @@ echo "var myTopicFrom = '".$topicFrom."';\n";
                 $("#mmEnd").val();
 
             $("#timerData").val(timer);
+            updateDiagrams(timer);
             });
         });
-
+    
     </script>
 <?php
 $page->printHead();
@@ -265,6 +273,9 @@ Where MM is minutes, 00 to 59.
 </p>
 
 
+<?php
+print $page->h2("MQTT status");
+?>
 <ul id='ws' style="font-family: 'Courier New', Courier, monospace;"></ul>
 
 
