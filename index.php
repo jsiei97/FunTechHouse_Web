@@ -18,6 +18,7 @@ $topicTo = $topicFrom."_ctrl";
     <script src="mqttws31.js" type="text/javascript"></script>
     <script src="jquery.min.js" type="text/javascript"></script>
     <script src="config.js" type="text/javascript"></script>
+    <script src="WeekTimer.js" type="text/javascript"></script>
 
     <script type="text/javascript">
 
@@ -34,6 +35,8 @@ echo "</pre>";
 echo "var myTopicTo   = '".$topicTo."';\n";
 echo "var myTopicFrom = '".$topicFrom."';\n";
 ?>
+
+    var wt = new WeekTimer();
 
     var mqtt;
     var reconnectTimeout = 2000;
@@ -105,7 +108,15 @@ echo "var myTopicFrom = '".$topicFrom."';\n";
     function updateDiagrams(timerData){
         console.log("timerData: "+timerData);
         //parse data
+        wt.addNewTimers(timerData); 
+        var day=1;
+        //for(day=1;day<=7;day++){
+        var wda = wt.getWeekDayArray(day);
         //call diagrams
+        wda.forEach(function(element, index, array) {
+            console.log('wda[' + index + '] = ' + element.toString());
+        });
+        //}
     };
 
     $(document).ready(function() {
