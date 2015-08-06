@@ -168,6 +168,9 @@ var WeekTimer = function () {
 
 WeekTimer.prototype.addNewTimers = function (line) {
     //console.log(line);
+    
+    //http://stackoverflow.com/questions/1232040/how-to-empty-an-array-in-javascript
+    this.timers.length = 0;
 
     //Remove last ; if there is no data after it...
     //console.log(line[line.length-1]);
@@ -209,16 +212,16 @@ WeekTimer.prototype.getTimerString = function () {
     for	(index = 0; index < this.timers.length; index++) {
         str+=this.timers[index].t1_dow.toString();
         str+=':';
-        str+=this.zeroPadd(this.timers[index].t1_h)
-            str+=':';
-        str+=this.zeroPadd(this.timers[index].t1_m)
-            str+='-';
+        str+=this.zeroPadd(this.timers[index].t1_h);
+        str+=':';
+        str+=this.zeroPadd(this.timers[index].t1_m);
+        str+='-';
         str+=this.timers[index].t2_dow.toString();
         str+=':';
-        str+=this.zeroPadd(this.timers[index].t2_h)
-            str+=':';
-        str+=this.zeroPadd(this.timers[index].t2_m)
-            str+=';';
+        str+=this.zeroPadd(this.timers[index].t2_h);
+        str+=':';
+        str+=this.zeroPadd(this.timers[index].t2_m);
+        str+=';';
     }
     return str;
 };

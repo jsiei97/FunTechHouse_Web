@@ -5,7 +5,7 @@
 
 //More args like the dataarray, and weekday?
 var dia = function(day, divId, data) {
-    console.log(day);
+    //console.log(day);
     //console.log(divId);
     divId = "#"+divId;
     //console.log(divId);
@@ -39,7 +39,10 @@ var dia = function(day, divId, data) {
         .y0(height)
         .y1(function(d) { return y(d.output); });
 
-    //var svg = d3.select("body")
+    //Remove the old diagram
+    d3.select(divId).select("svg").remove();
+
+    //Then add a new one
     var svg = d3.select(divId)
         .append("svg")
         .attr("width", width + margin.left + margin.right)

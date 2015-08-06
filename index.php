@@ -128,16 +128,14 @@ echo "var myTopicFrom = '".$topicFrom."';\n";
 
     function updateDiagrams(timerData){
         console.log("updateDiagrams timerData: "+timerData);
-        //parse data
         wt.addNewTimers(timerData);
-        var day=1;
-        //for(day=1;day<=7;day++){
-        var wda = wt.getWeekDayArray(day);
-        //call diagrams
-        //TODO: send data into diagram
-        dia("Mån", "diagramMon", wda);
-        // wda.forEach(function(element, index, array) { console.log('wda[' + index + '] = ' + element.toString()); });
-        //}
+        dia("Mon", "diagramMon", wt.getWeekDayArray(1));
+        dia("Tue", "diagramTue", wt.getWeekDayArray(2));
+        dia("Wed", "diagramWed", wt.getWeekDayArray(3));
+        dia("Thu", "diagramThu", wt.getWeekDayArray(4));
+        dia("Fri", "diagramFri", wt.getWeekDayArray(5));
+        dia("Sat", "diagramSat", wt.getWeekDayArray(6));
+        dia("Sun", "diagramSun", wt.getWeekDayArray(7));
     };
 
     $(document).ready(function() {
@@ -285,6 +283,14 @@ print $html->inputText("mmEnd", "00", "2", "2");
 <button id="btApply">Apply</button>
 </p>
 
+<div class="areaDia" id="diagramMon"></div>
+<div class="areaDia" id="diagramTue"></div>
+<div class="areaDia" id="diagramWed"></div>
+<div class="areaDia" id="diagramThu"></div>
+<div class="areaDia" id="diagramFri"></div>
+<div class="areaDia" id="diagramSat"></div>
+<div class="areaDia" id="diagramSun"></div>
+
 <p>
 The timerdata is built with [start]-[stop] and then a ; to mart the next [start]-[stop] time.
 </p>
@@ -303,14 +309,6 @@ Where HH is hours in 24h mode, 00 to 23.
 <p>
 Where MM is minutes, 00 to 59.
 </p>
-
-<div class="areaDia" id="diagramMon"></div>
-<div class="areaDia" id="diagramTue"></div>
-<div class="areaDia" id="diagramWed"></div>
-<div class="areaDia" id="diagramThu"></div>
-<div class="areaDia" id="diagramFri"></div>
-<div class="areaDia" id="diagramSat"></div>
-<div class="areaDia" id="diagramSun"></div>
 
 <?php
 print $page->h2("MQTT status");
