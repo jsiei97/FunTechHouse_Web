@@ -15,10 +15,31 @@ if(empty($topicFrom)){
 $topicTo = $topicFrom."_ctrl";
 
 ?>
+<!-- tmp d3 svg css rules -->
+<style>
+.areaDia {
+    font: 10px sans-serif;
+}
+
+.axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+}
+
+.area {
+    fill: steelblue;
+}
+</style>
+
     <script src="mqttws31.js" type="text/javascript"></script>
     <script src="jquery.min.js" type="text/javascript"></script>
     <script src="config.js" type="text/javascript"></script>
+
     <script src="WeekTimer.js" type="text/javascript"></script>
+    <script src="d3.js"        type="text/javascript"></script>
+    <script src="area.ds.js"   type="text/javascript"></script>
 
     <script type="text/javascript">
 
@@ -106,16 +127,16 @@ echo "var myTopicFrom = '".$topicFrom."';\n";
     };
 
     function updateDiagrams(timerData){
-        console.log("timerData: "+timerData);
+        console.log("updateDiagrams timerData: "+timerData);
         //parse data
-        wt.addNewTimers(timerData); 
+        wt.addNewTimers(timerData);
         var day=1;
         //for(day=1;day<=7;day++){
         var wda = wt.getWeekDayArray(day);
         //call diagrams
-        wda.forEach(function(element, index, array) {
-            console.log('wda[' + index + '] = ' + element.toString());
-        });
+        //TODO: send data into diagram
+        dia("Mån", "diagramMon", wda);
+        // wda.forEach(function(element, index, array) { console.log('wda[' + index + '] = ' + element.toString()); });
         //}
     };
 
@@ -174,7 +195,7 @@ echo "var myTopicFrom = '".$topicFrom."';\n";
             updateDiagrams(timer);
             });
         });
-    
+
     </script>
 <?php
 $page->printHead();
@@ -283,6 +304,13 @@ Where HH is hours in 24h mode, 00 to 23.
 Where MM is minutes, 00 to 59.
 </p>
 
+<div class="areaDia" id="diagramMon"></div>
+<div class="areaDia" id="diagramTue"></div>
+<div class="areaDia" id="diagramWed"></div>
+<div class="areaDia" id="diagramThu"></div>
+<div class="areaDia" id="diagramFri"></div>
+<div class="areaDia" id="diagramSat"></div>
+<div class="areaDia" id="diagramSun"></div>
 
 <?php
 print $page->h2("MQTT status");

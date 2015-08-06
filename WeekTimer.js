@@ -238,6 +238,8 @@ WeekTimer.prototype.bool2procent = function (bool) {
     }
     return 0;
 }
+
+// Returns a array that fits in with d3js
 WeekTimer.prototype.getWeekDayArray = function (day) {
     var wda = new Array();
     var hour;
@@ -247,23 +249,21 @@ WeekTimer.prototype.getWeekDayArray = function (day) {
     var time = '00:00';
     var lastOut  = this.isON(day,0,0);
     //console.log(time+" - "+lastOut.toString());
-    wda.push([time, this.bool2procent(lastOut)]);
+    wda.push({time: time, output: this.bool2procent(lastOut)});
 
     for(hour=0; hour<=23; hour++) {
         for(min=0; min<=59; min++) {
             var out = this.isON(day,hour,min);
             if(out !== lastOut) {
                 //console.log(time+" - "+lastOut.toString());
-                //wda.push([time, lastOut]);
-                wda.push([time, this.bool2procent(lastOut)]);
+                wda.push({time: time, output: this.bool2procent(lastOut)});
 
                 time = this.zeroPadd(hour);
                 time+= ":";
                 time+= this.zeroPadd(min);
 
                 //console.log(time+" - "+lastOut.toString());
-                //wda.push([time, out]);
-                wda.push([time, this.bool2procent(out)]);
+                wda.push({time: time, output: this.bool2procent(out)});
                 lastOut=out;
             } else {
                 time = this.zeroPadd(hour);
@@ -277,8 +277,7 @@ WeekTimer.prototype.getWeekDayArray = function (day) {
     var time = '23:59';
     var lastOut  = this.isON(day,23,59);
     //console.log(time+" - "+lastOut.toString());
-    //wda.push([time, lastOut]);
-    wda.push([time, this.bool2procent(lastOut)]);
+    wda.push({time: time, output: this.bool2procent(lastOut)});
 
     //console.log(wda.toString());
     return wda;
