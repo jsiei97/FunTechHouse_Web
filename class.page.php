@@ -58,7 +58,7 @@ class page{
 
     function printHead(){
         print "</head>\n<body>\n".	
-            "<div id=\"body_data\">\n";
+            "<div class=\"body_data\">\n";
     }
 
     function __destruct(){
@@ -68,12 +68,12 @@ class page{
 
         print "\n\n".
             "</div>\n".
-            "<div id=\"nav_links\">\n".
-            //"<div id=\"nav_logo\"><img src=\"".$this->path."pics/ubuntu_and_stm32.png\"><br><br></div>\n".
-            "<div id=\"nav_colour\">\n";
+            "<div class=\"nav_links\">\n".
+            //"<div class=\"nav_logo\"><img src=\"".$this->path."pics/ubuntu_and_stm32.png\"><br><br></div>\n".
+            "<div class=\"nav_colour\">\n";
 
         print "<br>\n".
-            "<div id=\"nav_level1\">".
+            "<div class=\"nav_level1\">".
               "<a href=\"https://github.com/jsiei97/FunTechHouse_Web\">FunTechHouse_Web</a>".
             "</div>".
             "<br>\n";
@@ -90,7 +90,7 @@ class page{
         print "</div>\n".
             "</div>\n".
             //"</div>\n".
-            //"<div id=\"print_info\">&copy fun-tech.se - Simonsson Fun Technologies</div>\n".
+            //"<div class=\"print_info\">&copy fun-tech.se - Simonsson Fun Technologies</div>\n".
             "</body>\n".
             "</html>\n";
     }
@@ -98,7 +98,7 @@ class page{
 
     function nav_link($target, $name, $level){
         $target = $this->path.$target;
-        $str .= "<div id=\"nav_level".$level."\"><a href=\"".$target."\">".$name."</a></div>\n";
+        $str .= "<div class=\"nav_level".$level."\"><a href=\"".$target."\">".$name."</a></div>\n";
 
 
         if(strpos($target, $this->page_name) !== false)
@@ -166,17 +166,17 @@ class page{
     }
     function h2($text, $name)
     {
-        $this->sub_nav_data .= "<div id=\"nav_level2\"><a href=\"".$_SERVER['PHP_SELF']."#".$name."\">".$text."</a></div>";
+        $this->sub_nav_data .= "<div class=\"nav_level2\"><a href=\"".$_SERVER['PHP_SELF']."#".$name."\">".$text."</a></div>";
         return $this->html->h2($text, $name);
     }
     function h3($text, $name)
     {
-        $this->sub_nav_data .= "<div id=\"nav_level3\"><a href=\"".$_SERVER['PHP_SELF']."#".$name."\">".$text."</a></div>";
+        $this->sub_nav_data .= "<div class=\"nav_level3\"><a href=\"".$_SERVER['PHP_SELF']."#".$name."\">".$text."</a></div>";
         return $this->html->h3($text, $name);
     }
     function h4($text, $name)
     {
-        $this->sub_nav_data .= "<div id=\"nav_level4\"><a href=\"".$_SERVER['PHP_SELF']."#".$name."\">".$text."</a></div>";
+        $this->sub_nav_data .= "<div class=\"nav_level4\"><a href=\"".$_SERVER['PHP_SELF']."#".$name."\">".$text."</a></div>";
         return $this->html->h4($text, $name);
     }
 

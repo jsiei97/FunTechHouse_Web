@@ -29,19 +29,19 @@ pre {
 
     padding: 10px;
 }
-#codebox p {
+.codebox p {
     font-size:smaller;
     font-style:italic;
 }
-#codebox a{
+.codebox a{
     text-decoration: none;
 }
-#codebox a:hover {
+.codebox a:hover {
     text-decoration: underline;
 }
 
 
-#body_data {
+.body_data {
  position: absolute;
  top:    0px;
  left: 200px;
@@ -51,7 +51,7 @@ pre {
 
 
 /*
-#body_head {
+.body_head {
 
  position: absolute;
  top:    0px;
@@ -60,26 +60,27 @@ pre {
  background: #000066;
  color:      #ffffff;
 }
-#body_head h1{
+.body_head h1{
     margin:      0 0 10px 200px;
 }
 */
 
-#nav_logo {
+.nav_logo {
     margin-left:10px;
     margin-top:10px;
 }
-#nav_logo img {
+
+.nav_logo img {
   width: 170px; 
 }
 
 
-#nav_colour {
+.nav_colour {
  background: #000066;
  color:      #ffffff;
 }
 
-#nav_links {
+.nav_links {
  position: absolute;
  top:     0px;
  left:    0px;
@@ -88,23 +89,23 @@ pre {
  font-family: helvetica, sans-serif;
 }
 
-#nav_links a{
+.nav_links a{
  background: #000066;
  color:      #ffffff;
  text-decoration: none;
 }
 
-#nav_links a:hover {
+.nav_links a:hover {
  background:      #000066;
  color:           #ffffff;
  text-decoration: underline;
 }
 
-#nav_links ul{
+.nav_links ul{
  list-style-type: none;
 }
 
-#nav_links hr {
+.nav_links hr {
   height: 1px;
   border: 1;
   width: 40px;
@@ -112,31 +113,31 @@ pre {
   text-align: left;
 }
 
-#nav_level1 {
+.nav_level1 {
     margin:      0 0 0 5px;
 }
 
-#nav_level2 {
+.nav_level2 {
     margin:     0 0 0 20px;
     font-size:  0.8em;
 }
 
-#nav_level3 {
+.nav_level3 {
     margin:     0 0 0 30px;
     font-size:  0.8em;
 }
 
-#nav_level4 {
+.nav_level4 {
     margin:     0 0 0 40px;
     font-size:  0.8em;
 }
 
 
-#print_info {
+.print_info {
 	display: none;
 }
 
-#creative_commons {
+.creative_commons {
     margin:      50px 0 0 0;
     font-size:smaller;
     font-style:italic;
