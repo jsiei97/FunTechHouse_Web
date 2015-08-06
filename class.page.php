@@ -69,7 +69,7 @@ class page{
         print "\n\n".
             "</div>\n".
             "<div class=\"nav_links\">\n".
-            //"<div class=\"nav_logo\"><img src=\"".$this->path."pics/ubuntu_and_stm32.png\"><br><br></div>\n".
+            "<div class=\"nav_logo\"><img src=\"".$this->path."/favicon_gubbe.png\"><br><br></div>\n".
             "<div class=\"nav_colour\">\n";
 
         print "<br>\n".
