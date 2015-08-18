@@ -9,13 +9,13 @@ class page{
 
     //Take this from dB later...
     var $weekTimers = array(
-        "Motor1" => "/FunTechHouse/WeekTimer/Motor1",
-        "Motor2" => "/FunTechHouse/WeekTimer/Motor2",
-        "Utebelysning" => "/FunTechHouse/WeekTimer/Utebel",
+        "Motor1" => "FunTechHouse/WeekTimer/Motor1",
+        "Motor2" => "FunTechHouse/WeekTimer/Motor2",
+        "Utebelysning" => "FunTechHouse/WeekTimer/Utebel",
 
-        "Rum1"   => "/FunTechHouse/WeekTimer/Rum1",
-        "Rum2"   => "/FunTechHouse/WeekTimer/Rum2",
-        "Rum3"   => "/FunTechHouse/WeekTimer/Rum3",
+        "Rum1"   => "FunTechHouse/WeekTimer/Rum1",
+        "Rum2"   => "FunTechHouse/WeekTimer/Rum2",
+        "Rum3"   => "FunTechHouse/WeekTimer/Rum3",
     );
 
 
