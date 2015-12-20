@@ -212,9 +212,9 @@ print $page->h2("Force");
 ?>
 <p>
 <button id="btForceOn">Force ON</button>
-<input type="text" id="forceONTime" value="60" size="3">
+<input type="text" id="forceONTime" value="120" size="3">
 <button id="btForceOFF">Force OFF</button>
-<input type="text" id="forceOFFTime" value="60" size="3">
+<input type="text" id="forceOFFTime" value="120" size="3">
 <button id="btAuto">Auto</button>
 </p>
 
